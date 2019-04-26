@@ -1,0 +1,66 @@
+slice : Index เริ่มต้นจาก 0 เหมือนกับภาษาอื่น ๆ 
+
+************************************** การเข้าถึงข้อมูลใน slice **************************************
+
+การเข้าถึงข้อมูลใน slice แบบ Individual 
+
+    ex fruits := []string{"apple","banana","grape"}
+
+    /*
+        slice[index]
+    */
+
+    fruits[0] --> "apple"
+    fruits[3] --> "grape"
+
+การเข้าถึงข้อมูลใน slice แบบ length 
+
+    /* 
+        slice[startLength:endLength]
+
+        endLength : หมายถึงจำนวนที่จะเอาเริ่มต้นจาก startLength ไม่ใช่ index สุดท้ายนะ 
+    */
+
+    fruits[0:2] --> "apple","banana"
+
+    หรือ ถ้าเราจะเอาตั้งแต่แรกถึง length ที่เราต้องการ
+
+    fruits[:endLength]
+
+    หรือ ถ้าเราจะเอาตั้งแต่ Index ที่ต้องการจนถึงสุดท้ายเราก็สามารถทำได้แบบนี้ 
+
+    fruits[2:] มันจะเอาตั้งแต่ index ที่ 2 แทน 
+
+**** startLength คือเอาตั้งแต่ Index ที่เท่าไร 
+     endLength คือเอาจำนวนเท่าไรเริ่มต้นจาก Index (นับตัวแรกเป็น 1 ) ****     
+
+
+*************************************************************************************************
+
+byte slice
+
+/*
+    String จริง ๆ แล้วเวลาคอมพิวเตอร์มองมันมองเป็น ascii code เวลาเราจะใช้ lib ต่าง ๆ ที่ทำการติดต่อกับ I/O มันจะขอข้อมูลเป็น []byte
+*/
+
+วิธีการประกาศ byte slice --> []byte
+
+ตัวอย่างการใช้งาน []byte 
+
+	greeting := "Hi there!"
+	fmt.Println([]byte(greeting)) วิธีการนี้เราเรียกอีกอย่างว่า type conversions (การเปลี่ยนแปลงประเภทของข้อมูล)
+
+** ถ้าหากเรามี []string แล้วต้องการเปลี่ยนให้เป็น []byte ต้องทำการ converts []string ให้เป็น string ตัวเดียวก่อน 
+
+func (d deck) toString() string {
+	/*
+		Join : การรวม String เข้าด้วยกันโดยสามารถกำหนดตัวแบ่งระหว่างคำได้ จากนั้นจะคืนค่าเป็น string ตัวเดียว
+
+        syntax : strings.Join([]string , ตัวแบ่งระหว่างค่า) // ต้องทำการ import strings เข้ามาก่อนนะ 
+	*/
+	return strings.Join([]string(d), ",")
+}
+
+*** slice ใน go ไม่มีฟังก์ชั่นสำหรับการ suffler เราจะต้องเขียนเอง 
+
+การเข้าถึงข้อมูลใน slice ทำได้ด้วยท่า slice[index]
